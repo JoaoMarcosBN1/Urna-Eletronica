@@ -41,7 +41,7 @@ main(){
                         printf("Digite a quantidade de votantes (população da cidade maiores de 18 e/ou com título de eleitor)\n");
                         scanf("%d", &eleitores);
                             for(int i = 0; i < eleitores; i++){
-                                printf("Digite o número do candito:\n");
+                                printf("Digite o número do candito ou 0 para branco:\n");
                                 scanf("%d", &voto);
                                     if (voto == cand1)
                                     {
