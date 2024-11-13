@@ -2,7 +2,7 @@
 #include <locale.h>
 
 main(){
-    int eleitores, senha, menu, cand1, cand2, cand3, cand4, branco = 0, nulo = 0, admin, voto = 0, voto1 = 0, voto2 = 0, voto3 = 0, voto4 = 0;
+    int eleitores, senha, resposta, menu, candidatos[10] = {0}, branco, nulo, voto[10] = {0}, votoContabilizado = 0;
     float porcentagem;
     
     setlocale(LC_ALL, "portuguese");
@@ -26,16 +26,42 @@ main(){
             switch (menu) {
                 case 1:
                     printf("Opção 1 escolhida: Inserir candidatos\n\n");
-                        printf("Digite os números dos 4 candidatos participantes:\n\n");
-                        printf("Candidato 1:\n");
-                        scanf("%d", &cand1);
-                        printf("Candidato 2:\n");
-                        scanf("%d", &cand2);
-                        printf("Canditado 3:\n");
-                        scanf("%d", &cand3);
-                        printf("Candidato 4:\n");
-                        scanf("%d", &cand4);
+                        printf("Digite os números dos candidatos participantes (número mínimo de candidatos é 4 ):\n\n");
+                        for (int i = 0; i < 4; i++)
+                        {
+                            printf("Digite o número do candidato %d: ", i + 1);
+                            scanf("%d", &candidatos[i]);
+                            printf("O candidato %d foi adicionado\n", candidatos[i]);
+                        } 
+                        
+                        for (int i = 4; i < 10; i++)
+                        {
+                            printf("Digite o número do candidato %d: ", i + 1);
+                            scanf("%d", &candidatos[i]);
+                            printf("O candidato %d foi adicionado\n", candidatos[i]);
+                            printf("Deseja continuar?\n[1]SIM\n[2]NÃO\n\n");
+                            scanf("%d", &resposta);
+                                
+                                if (resposta == 2){
+                                    printf("Finalizando a inserção de candidatos\n\n");
+                                break;
+
+                                } else if (resposta != 1) {
+                                    printf("Opção inválida.\n");
+                                return 0;
+                                }
+                            printf("Candidatos adicionados:\n");
+                                for (int i = 0; i < 10; i++)
+                                {
+                                    if(candidatos[i] != 0) {
+                                        printf("Candidato %d: %d\n", i+1, candidatos[i]);
+                                    }
+                                }
+                                                       
+                        }    
+                    
                     break;
+                
                 case 2:
                     printf("Opção 2 escolhida: Iniciar votação\n");
                         printf("Digite a quantidade de votantes (população da cidade maiores de 18 e/ou com título de eleitor)\n");
@@ -43,21 +69,24 @@ main(){
                             for(int i = 0; i < eleitores; i++){
                                 printf("Digite o número do candito ou 0 para branco:\n");
                                 scanf("%d", &voto);
-                                    if (voto == cand1)
-                                    {
-                                       voto1++;
-                                    } else if (voto == cand2) {
-                                        voto2++;
-                                    } else if (voto == cand3) {
-                                        voto3++;
-                                    } else if (voto == cand4) {
-                                        voto4++;                            
-                                    } else if (voto == 0){
-                                        branco++;
-                                    } else {
-                                        printf ("voto nulo");
-                                        nulo++;
+                                for (int j = 0; j < 10; j++)
+                                {
+                                    if(candidatos[j] != 0 && voto == candidatos[j]){
+                                        votos[j]++;
+                                        votoContabilizado = 1;
+                                        printf("Sou voto foi no candidato %d", candidatos[j]);
+                                        break;
                                     }
+                                }
+                                if (voto == 0)
+                                {
+                                    printf("Voto em Branco\n");
+                                    branco++;
+                                }else if (!votoContabilizado)
+                                {
+                                    printf("Voto nulo\n");
+                                    nulo++;
+                                }
                             }
                     break;
                 case 3:
@@ -68,14 +97,14 @@ main(){
                     break;
                 case 4:
                     printf("Opção 4 escolhida: Computar votos\n");
-                        printf("O resultado da votação foi:\n");
-                        printf("O resultado da votação foi:\n");
-                        printf("Candidato 1: %d votos\n", voto1);
-                        printf("Candidato 2: %d votos\n", voto2);
-                        printf("Candidato 3: %d votos\n", voto3);
-                        printf("Candidato 4: %d votos\n", voto4);
-                        printf("Votos em branco: %d\n", branco);
-                        printf("Votos nulos: %d\n", nulo);
+                    
+
+
+
+
+
+
+
                     break;
                 case 0:
                     printf("Saindo do sistema...\n");
