@@ -4,7 +4,7 @@
 #define MAX_CANDIDATOS 10
 
 int main() {
-    int eleitores, senha, resposta, menu, candidatos[MAX_CANDIDATOS] = {0}, branco = 0, nulo = 0, voto;
+    int eleitores, senha, resposta, respostaFinalizar, menu, candidatos[MAX_CANDIDATOS] = {0}, branco = 0, nulo = 0, voto;
     int votos[MAX_CANDIDATOS] = {0};
     int votoContabilizado;
     float porcentagem, totalVotos, maiorVotoPorcentagem;
@@ -31,13 +31,13 @@ int main() {
                 case 1:
                     printf("Opção 1 escolhida: Inserir candidatos\n\n");
                     printf("Digite os números dos candidatos participantes (mínimo de 4):\n\n");
-                    for (int i = 0; i < 4; i++) {
+                    for (int i = 0; i < 3; i++) {
                         printf("Digite o número do candidato %d: ", i + 1);
                         scanf("%d", &candidatos[i]);
                         printf("O candidato %d foi adicionado\n", candidatos[i]);
                     }
 
-                    for (int i = 4; i < MAX_CANDIDATOS; i++) {
+                    for (int i = 3; i < MAX_CANDIDATOS; i++) {
                         printf("Digite o número do candidato %d: ", i + 1);
                         scanf("%d", &candidatos[i]);
                         printf("O candidato %d foi adicionado\n", candidatos[i]);
@@ -80,7 +80,6 @@ int main() {
 
                 case 3:
                     printf("Opção 3 escolhida: Encerrar votação\n");
-
                     totalVotos = branco + nulo;
                     for (int i = 0; i < MAX_CANDIDATOS; i++) {
                         totalVotos += votos[i];
@@ -149,8 +148,21 @@ int main() {
                         } else {
                             printf("A nova votação terminou em empate.\n");
                         }                        
-
-
+                        printf("Deseja finalizar o programa?\n[1]SIM\n[2]NÃO");
+                        
+                            if (resposta == 2) {
+                                printf("Para finalizar por favor digite a senha\n\n");
+                                scanf("%d", &senha);
+                                    if (senha == 3131)
+                                    {
+                                        printf("Finalizando programa");
+                                        return 0;
+                                    }
+                                    
+                            } else if (resposta != 1) {
+                                printf("Senha incorreta, voltando ao menu\n");
+                                break;
+                            }
                     }
                     break;
 
