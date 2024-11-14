@@ -1,3 +1,4 @@
+//João Marcos Barbosa Nogueira e Yanna Beatriz Brandão de Andrade
 #include <stdio.h>
 #include <locale.h>
 
@@ -30,6 +31,10 @@ int main() {
             switch (menu) {
                 case 1:
                     printf("Opção 1 escolhida: Inserir candidatos\n\n");
+                    printf("Para seguir, por favor insira a senha de 4 dígitos.\n\n");
+                    scanf("%d", &senha);
+                    
+                    if (senha == 3131) {
                     printf("Digite os números dos candidatos participantes (mínimo de 4):\n\n");
                     for (int i = 0; i < 3; i++) {
                         printf("Digite o número do candidato %d: ", i + 1);
@@ -52,10 +57,20 @@ int main() {
                             return 0;
                         }
                     }
+                        }else{
+                            printf("Senha incorreta!");
+                            return 0;
+                        }
+                    }
                     break;
 
                 case 2:
                     printf("Opção 2 escolhida: Iniciar votação\n");
+                    printf("Para seguir, por favor insira a senha de 4 dígitos.\n\n");
+                    scanf("%d", &senha);
+
+                    if (senha == 3131) {
+
                     printf("Digite a quantidade de votantes (população maior de 18 e/ou com título de eleitor):\n");
                     scanf("%d", &eleitores);
                     for (int i = 0; i < eleitores; i++) {
@@ -75,11 +90,20 @@ int main() {
                         } else if (!votoContabilizado) {
                             nulo++;
                         }
+                    }else{
+                        printf("Senha incorreta!");
+                            return 0;
                     }
+                    }
+                      
                     break;
 
                 case 3:
                     printf("Opção 3 escolhida: Encerrar votação\n");
+                    printf("Para seguir, por favor insira a senha de 4 dígitos.\n\n");
+                    scanf("%d", &senha);
+                    
+                    if (senha == 3131) {
                     totalVotos = branco + nulo;
                     for (int i = 0; i < MAX_CANDIDATOS; i++) {
                         totalVotos += votos[i];
@@ -163,11 +187,19 @@ int main() {
                                 printf("Senha incorreta, voltando ao menu\n");
                                 break;
                             }
+                    }else{
+                        printf("Senha incorreta!");
+                            return 0;
+                    }
                     }
                     break;
 
                 case 4:
                     printf("Opção 4 escolhida: Computar votos\n");
+                    printf("Para seguir, por favor insira a senha de 4 dígitos.\n\n");
+                    scanf("%d", &senha);
+                    
+                    if (senha == 3131) {
                     for (int i = 0; i < MAX_CANDIDATOS; i++) {
                         if (candidatos[i] != 0) {
                             printf("Candidato %d: %d votos\n", candidatos[i], votos[i]);
@@ -175,6 +207,10 @@ int main() {
                     }
                     printf("Votos em branco: %d\n", branco);
                     printf("Votos nulos: %d\n", nulo);
+                    }else{
+                        printf("Senha incorreta!");
+                            return 0;
+                    }
                     break;
 
                 case 0:
